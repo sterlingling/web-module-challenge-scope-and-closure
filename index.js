@@ -30,8 +30,10 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
+    - counter 2 uses closure whereas counter1 does not.
   
   2. Which of the two uses a closure? How can you tell?
+    - counter2 uses closure because it initializes count in the global scope then calls for it within the scope of the function.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
@@ -64,8 +66,10 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    let score = Math.random()*3;
+    return Math.floor(score);
+  
 }
 
 
@@ -83,8 +87,17 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(callback,numInnings){
+  let homeScore = 0;
+  let awayScore = 0;
+  for (let i = 0; i < numInnings; i++){
+    homeScore += callback();
+    awayScore += callback();
+  }
+  return {
+    Home: homeScore,
+    Away: awayScore
+  }
 }
 
 
@@ -101,8 +114,11 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(callback) {
+  return{
+    Home: callback(),
+    Away: callback()
+  }
 
 }
 
@@ -147,7 +163,7 @@ Use the scoreboard function below to do the following:
   "This game will require extra innings: Away 10 - Home 10"
 ] */
 // NOTE: There is no test associated with this code; if your output matches the given example, consider it complete!
-function scoreboard(/* CODE HERE */) {
+function scoreboard(innScore,innning,numInnings) {
   /* CODE HERE */
 }
 
